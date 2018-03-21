@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TextInput, Dimensions, Image, ImageBackground } from 'react-native';
+import { Text, View, TextInput, Dimensions, Image, ImageBackground, BlurView } from 'react-native';
 import { Asset, Font, AppLoading } from 'expo';
 
 export default class App extends React.Component {
@@ -22,27 +22,31 @@ export default class App extends React.Component {
     }
     else{
       return (
-        <View style={{ flex: 1 }}>
+        <View tint="light" intensity={ 50 } style={{ flex: 1 }}>
 
-            <View style={{ marginTop: Dimensions.get('window').height / 20, height: Dimensions.get('window').height / 15 }}>
-              <ImageBackground style={{ height: Dimensions.get('window').height / 15, width: Dimensions.get('window').width}} source={require('./assets/images/searchbar.png')} >
-                <TextInput
-                  style={{flex: 1, fontFamily: 'sf-pro', marginLeft: Dimensions.get('window').width / 10 }}
-                  placeholder="Search"
-                  textInputProps={{underlineColorAndroid:'rgba(0,0,0,0)'}}
-                  onChangeText={(text) => this.setState({text})}
-                />
-              </ImageBackground>
-            </View>
-
-            <View style={{ alignItems: 'center' }}>
-              <View style={{ marginTop: Dimensions.get('window').height / 8, height: Dimensions.get('window').height / 2.5, width: Dimensions.get('window').width * 0.8, alignItems: 'center' }}>
-                
-                <ImageBackground style={{ height: Dimensions.get('window').height / 2, width: Dimensions.get('window').width * 0.8 }} source={require('./assets/images/folder.png')} >
-                  <Text style={{ textAlign: 'center', textAlignVertical: 'center', fontFamily: 'sf-pro', fontSize: Dimensions.get('window').height / 10 }}>Grid</Text>
+            <ImageBackground style={{ height: Dimensions.get('window').height, width: Dimensions.get('window').width }} source={require('./assets/images/wallpaper.jpg')} >
+              
+              <View style={{ marginTop: Dimensions.get('window').height / 25, height: Dimensions.get('window').height / 15 }}>
+                <ImageBackground style={{ height: Dimensions.get('window').height / 15, width: Dimensions.get('window').width}} source={require('./assets/images/searchbar.png')} >
+                  <TextInput
+                    style={{ color: '#fff', flex: 1, fontFamily: 'sf-pro', marginLeft: Dimensions.get('window').width / 10 }}
+                    placeholder="Search"
+                    textInputProps={{underlineColorAndroid:'rgba(0,0,0,0)'}}
+                    onChangeText={(text) => this.setState({text})}
+                  />
                 </ImageBackground>
               </View>
-            </View>
+
+              <View style={{ alignItems: 'center' }}>
+                <View style={{ marginTop: Dimensions.get('window').height / 8, height: Dimensions.get('window').height / 2.5, width: Dimensions.get('window').width * 0.8, alignItems: 'center' }}>
+                  
+                  <ImageBackground style={{ height: Dimensions.get('window').height / 2, width: Dimensions.get('window').width * 0.8 }} source={require('./assets/images/folder.png')} >
+                    <Text style={{ textAlign: 'center', textAlignVertical: 'center', fontFamily: 'sf-pro', fontSize: Dimensions.get('window').height / 10 }}>Grid</Text>
+                  </ImageBackground>
+                </View>
+              </View>
+
+            </ImageBackground>
 
         </View>
       );
