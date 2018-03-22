@@ -1,9 +1,12 @@
-                    <Image style={{ height: Dimensions.get('window').height / 6, width: Dimensions.get('window').width * 0.8 / 3  }} source={require('./assets/images/icons/appstore.png')} />
-                    <Image style={{ height: Dimensions.get('window').height / 6, width: Dimensions.get('window').width * 0.8 / 3  }} source={require('./assets/images/icons/calendar.png')} />
-                    <Image style={{ height: Dimensions.get('window').height / 6, width: Dimensions.get('window').width * 0.8 / 3  }} source={require('./assets/images/icons/fb.png')} />
-                    <Image style={{ height: Dimensions.get('window').height / 6, width: Dimensions.get('window').width * 0.8 / 3  }} source={require('./assets/images/icons/instagram.png')} />
-                    <Image style={{ height: Dimensions.get('window').height / 6, width: Dimensions.get('window').width * 0.8 / 3  }} source={require('./assets/images/icons/itunesstore.png')} />
-                    <Image style={{ height: Dimensions.get('window').height / 6, width: Dimensions.get('window').width * 0.8 / 3  }} source={require('./assets/images/icons/mail.png')} />
-                    <Image style={{ height: Dimensions.get('window').height / 6, width: Dimensions.get('window').width * 0.8 / 3  }} source={require('./assets/images/icons/map.png')} />
-                    <Image style={{ height: Dimensions.get('window').height / 6, width: Dimensions.get('window').width * 0.8 / 3  }} source={require('./assets/images/icons/messages.png')} />
-                    <Image style={{ height: Dimensions.get('window').height / 6, width: Dimensions.get('window').width * 0.8 / 3  }} source={require('./assets/images/icons/messenger.png')} />
+        <AppIcon name= { 'Map' } source={ require('./assets/images/icons/map.png') } key={ 'Map' } />,
+        <AppIcon name= { 'Messages' } source={ require('./assets/images/icons/messages.png') } key={ 'Messages' } />,
+        <AppIcon name= { 'Messenger' } source={ require('./assets/images/icons/messenger.png') } key={ 'Messenger' } />
+        <AppIcon name= { 'Music' } source={ require('./assets/images/icons/music.png') } key={ 'Music' } />,
+        <AppIcon name= { 'Notes' } source={ require('./assets/images/icons/notes.png') } key={ 'Notes' } />,
+        <AppIcon name= { 'Phone' } source={ require('./assets/images/icons/phone.png') } key={ 'Phone' } />,
+        <AppIcon name= { 'Photos' } source={ require('./assets/images/icons/photos.png') } key={ 'Photos' } />,
+        <AppIcon name= { 'Safari' } source={ require('./assets/images/icons/safari.png') } key={ 'Safari' } />,
+        <AppIcon name= { 'Settings' } source={ require('./assets/images/icons/settings.png') } key={ 'Settings' } />,
+        <AppIcon name= { 'Snapchat' } source={ require('./assets/images/icons/snap.png') } key={ 'Snapchat' } />,
+        <AppIcon name= { 'Weather' } source={ require('./assets/images/icons/weather.png') } key={ 'Weather' } />,
+        <AppIcon name= { 'YouTube' } source={ require('./assets/images/icons/yt.png') } key={ 'YouTube' } />

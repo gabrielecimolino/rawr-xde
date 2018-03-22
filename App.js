@@ -65,51 +65,55 @@ class AppIcon extends React.Component{
   render(){
     if(this.state.selected){
       return(
-        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: Dimensions.get('window').height / 6, width: Dimensions.get('window').width * 0.8 / 3 }}>
-          <View style={{ }}>
-            <ImageBackground style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', height: Dimensions.get('window').height * 0.7 / 6, width: Dimensions.get('window').width * 0.7 * 0.8 / 3 }} source={this.props.source} >
+        <View style={{ height: Dimensions.get('window').height / 6 }}>
+          <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: Dimensions.get('window').height / 6, width: Dimensions.get('window').width * 0.8 / 3 }}>
+            <View style={{ }}>
+              <ImageBackground style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', height: Dimensions.get('window').height * 0.7 / 6, width: Dimensions.get('window').width * 0.7 * 0.8 / 3 }} source={this.props.source} >
 
-              <View style={{  }}>
+                <View style={{  }}>
 
-                <ImageBackground source= { require('./assets/images/icons/check.png') } style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', height: Dimensions.get('window').height * 0.7 / 6, width: Dimensions.get('window').width * 0.7 * 0.8 / 3 }} >
+                  <ImageBackground source= { require('./assets/images/icons/check.png') } style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', height: Dimensions.get('window').height * 0.7 / 6, width: Dimensions.get('window').width * 0.7 * 0.8 / 3 }} >
 
-                  <Button 
-                    onPress={ this.press.bind(this) }
-                    title= '                                                                                          '
-                    color= 'rgba(0,0,0,0)'
-                    style={{ width: Dimensions.get('window').width  }}
-                  >
-                  </Button>
+                    <Button 
+                      onPress={ this.press.bind(this) }
+                      title= '                                                                                          '
+                      color= 'rgba(0,0,0,0)'
+                      style={{ width: Dimensions.get('window').width  }}
+                    >
+                    </Button>
 
-                </ImageBackground>
+                  </ImageBackground>
 
-              </View>
+                </View>
 
-            </ImageBackground>
+              </ImageBackground>
 
-            <Text style={{ color: '#fff', fontFamily: 'sf-pro', textAlign: 'center' }}>{this.props.name}</Text>
+              <Text style={{ color: '#fff', fontFamily: 'sf-pro', textAlign: 'center' }}>{this.props.name}</Text>
 
-          </View>  
+            </View>  
+          </View>
         </View>
       );
     }
     else{
       return(
-        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: Dimensions.get('window').height / 6, width: Dimensions.get('window').width * 0.8 / 3 }} >
-          
-          <View style={{  }}>
-            <ImageBackground style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', height: Dimensions.get('window').height * 0.7 / 6, width: Dimensions.get('window').width * 0.7 * 0.8 / 3 }} source={this.props.source} >
-              <Button 
-                onPress={ this.press.bind(this) }
-                title= '                                                                                    '
-                color= 'rgba(0,0,0,0)'
-                style={{ width: Dimensions.get('window').width  }}
-              />
-            </ImageBackground>
+        <View style ={{ height: Dimensions.get('window').height / 6 }}>
+          <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: Dimensions.get('window').height / 6, width: Dimensions.get('window').width * 0.8 / 3 }} >
+            
+            <View style={{  }}>
+              <ImageBackground style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', height: Dimensions.get('window').height * 0.7 / 6, width: Dimensions.get('window').width * 0.7 * 0.8 / 3 }} source={this.props.source} >
+                <Button 
+                  onPress={ this.press.bind(this) }
+                  title= '                                                                                    '
+                  color= 'rgba(0,0,0,0)'
+                  style={{ width: Dimensions.get('window').width  }}
+                />
+              </ImageBackground>
 
-            <Text style={{ color: '#fff', fontFamily: 'sf-pro', textAlign: 'center' }}>{this.props.name}</Text>
-          </View>  
+              <Text style={{ color: '#fff', fontFamily: 'sf-pro', textAlign: 'center' }}>{this.props.name}</Text>
+            </View>  
 
+          </View>
         </View>
       );
     }
@@ -130,24 +134,61 @@ export default class App extends React.Component {
     this.setState({ fontLoaded: true, appIcons: [
         <AppIcon name= { 'App Store' } source={ require('./assets/images/icons/appstore.png') } key={ 'App Store' } />,
         <AppIcon name= { 'Calendar' } source={ require('./assets/images/icons/calendar.png') } key={ 'Calendar' } />,
-        <AppIcon name= { 'Facebook' } source={ require('./assets/images/icons/fb.png') } key={ 'Facebook' } />
+        <AppIcon name= { 'Facebook' } source={ require('./assets/images/icons/fb.png') } key={ 'Facebook' } />,
+        <AppIcon name= { 'Instagram' } source={ require('./assets/images/icons/instagram.png') } key={ 'Instagram' } />,
+        <AppIcon name= { 'Itunes Store' } source={ require('./assets/images/icons/itunesstore.png') } key={ 'Itunes Store' } />,
+        <AppIcon name= { 'Mail' } source={ require('./assets/images/icons/mail.png') } key={ 'Mail' } />,
+        <AppIcon name= { 'Map' } source={ require('./assets/images/icons/map.png') } key={ 'Map' } />,
+        <AppIcon name= { 'Messages' } source={ require('./assets/images/icons/messages.png') } key={ 'Messages' } />,
+        <AppIcon name= { 'Messenger' } source={ require('./assets/images/icons/messenger.png') } key={ 'Messenger' } />,
+        <AppIcon name= { 'Music' } source={ require('./assets/images/icons/music.png') } key={ 'Music' } />,
+        <AppIcon name= { 'Notes' } source={ require('./assets/images/icons/notes.png') } key={ 'Notes' } />,
+        <AppIcon name= { 'Phone' } source={ require('./assets/images/icons/phone.png') } key={ 'Phone' } />,
+        <AppIcon name= { 'Photos' } source={ require('./assets/images/icons/photos.png') } key={ 'Photos' } />,
+        <AppIcon name= { 'Safari' } source={ require('./assets/images/icons/safari.png') } key={ 'Safari' } />,
+        <AppIcon name= { 'Settings' } source={ require('./assets/images/icons/settings.png') } key={ 'Settings' } />,
+        <AppIcon name= { 'Snapchat' } source={ require('./assets/images/icons/snap.png') } key={ 'Snapchat' } />,
+        <AppIcon name= { 'Weather' } source={ require('./assets/images/icons/weather.png') } key={ 'Weather' } />,
+        <AppIcon name= { 'YouTube' } source={ require('./assets/images/icons/yt.png') } key={ 'YouTube' } />
       ] });
-    this.setState({ workingSet: this.state.appIcons });
+
+    page = this.getPage(0, this.state.appIcons);
+    this.setState({ workingSet: this.state.appIcons, currentPageNumber: 0, currentPage: page });
   }
 
-  contains(key, searchString){
-    return key.toLowerCase().indexOf(searchString.toLowerCase()) !== -1;
+  contains(key, searchString, keyIndex, stringIndex){
+    return key.toLowerCase().indexOf(searchString.toLowerCase()) > -1;
+    // if(keyIndex < key.length){
+    //   if(key[keyIndex] == searchString[stringIndex]){
+    //     if(stringIndex == searchString.length - 1) return true;
+    //     else return contains(key, searchString, keyIndex + 1, stringIndex + 1);
+    //   }
+    //   else return contains(key, searchString, keyIndex + 1, 0);
+    // }
+    // else return false;
   }
 
   filterApps(searchString, icons){
     //Alert.alert(searchString);
     //this.state.workingSet.map((item) => Alert.alert(item.key));
     this.setState({ searchString: searchString, workingSet: icons.filter((item) => this.contains(item.key, searchString)) });
+    page = this.getPage(this.state.currentPageNumber, this.state.workingSet);
+    this.setState({ currentPage: page });
   }
 
-  init(){
-    Alert.alert('init');
-    this.setState({ workingSet: appIcons, init: true });
+  getPage(pageNumber, icons){
+    firstIndex = 9 * pageNumber;
+    taken = 0;
+    page = [];
+
+    for(var i = firstIndex; i < icons.length; i++){
+      if(taken < 9){
+        page.push(icons[i]);
+        taken++;
+      }
+    }
+
+    return page;
   }
 
   render() {
@@ -188,11 +229,11 @@ export default class App extends React.Component {
               </View>
 
               <View style={{ alignItems: 'center' }}>
-                <View style={{ marginTop: Dimensions.get('window').height / 8, height: Dimensions.get('window').height / 2.5, width: Dimensions.get('window').width * 0.8, alignItems: 'center' }}>
+                <View style={{ marginTop: Dimensions.get('window').height / 8, height: Dimensions.get('window').height / 2.5, width: Dimensions.get('window').width * 0.8 }}>
                   
                   <ImageBackground style={{ height: Dimensions.get('window').height / 2, width: Dimensions.get('window').width * 0.8, flexDirection: 'row', flexWrap: 'wrap' }} source={require('./assets/images/folder.png')} >
                     
-                      { this.state.workingSet }
+                      { this.state.currentPage }
                 
                   </ImageBackground>
 
