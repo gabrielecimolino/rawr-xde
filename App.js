@@ -15,6 +15,7 @@ class DoneButton extends React.Component{
     } else {
       this.setState({ pressed: true });
     }
+    this.props.parentFunction();
   }
   
   render(){
@@ -43,6 +44,45 @@ class DoneButton extends React.Component{
   }
 }
 
+class App extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = { opened: false };
+  }
+
+  press(){
+    Alert.alert(this.props.name + " has been pressed");
+  }
+
+  render(){
+    if(this.state.opened){
+      return(<Text>;____;</Text>);
+    }
+    else{
+      return(
+        <View style ={{ height: Dimensions.get('window').height / 6 }}>
+          <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: Dimensions.get('window').height / 6, width: Dimensions.get('window').width / 4 }} >
+            
+            <View style={{  }}>
+              <ImageBackground style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', height: Dimensions.get('window').height * 0.7 / 6, width: Dimensions.get('window').width * 0.7 / 4 }} source={this.props.source} >
+                <Button 
+                  onPress={ this.press.bind(this) }
+                  title= '                                                                                    '
+                  color= 'rgba(0,0,0,0)'
+                  style={{ width: Dimensions.get('window').width  }}
+                />
+              </ImageBackground>
+
+              <Text style={{ color: '#fff', fontFamily: 'sf-pro', textAlign: 'center' }}>{this.props.name}</Text>
+            </View>  
+
+          </View>
+        </View>
+      );
+    }
+  }
+}
+
 class AppIcon extends React.Component{
   constructor(props){
     super(props);
@@ -55,6 +95,7 @@ class AppIcon extends React.Component{
     } else {
       this.setState({ selected: true });
     }
+    this.props.parentFunction(this.props.index);
   }
 
   contains(searchString){
@@ -78,7 +119,7 @@ class AppIcon extends React.Component{
                       onPress={ this.press.bind(this) }
                       title= '                                                                                          '
                       color= 'rgba(0,0,0,0)'
-                      style={{ width: Dimensions.get('window').width  }}
+                      style={{ width: Dimensions.get('window').width }}
                     >
                     </Button>
 
@@ -120,10 +161,10 @@ class AppIcon extends React.Component{
   }
 }
 
-export default class App extends React.Component {  
+export default class Prototype extends React.Component {  
   constructor(props){
     super(props);
-    this.state = { fontLoaded: false, workingSet: [], searchString: '', init: false };
+    this.state = { fontLoaded: false, workingSet: [], searchString: '', init: false, doneSelecting: false, selectedApps: [], useableApps: [] };
   }
 
   async componentDidMount() {
@@ -132,32 +173,73 @@ export default class App extends React.Component {
     });
 
     this.setState({ fontLoaded: true, appIcons: [
-        <AppIcon name= { 'App Store' } source={ require('./assets/images/icons/appstore.png') } key={ 'App Store' } />,
-        <AppIcon name= { 'Calendar' } source={ require('./assets/images/icons/calendar.png') } key={ 'Calendar' } />,
-        <AppIcon name= { 'Facebook' } source={ require('./assets/images/icons/fb.png') } key={ 'Facebook' } />,
-        <AppIcon name= { 'Instagram' } source={ require('./assets/images/icons/instagram.png') } key={ 'Instagram' } />,
-        <AppIcon name= { 'Itunes Store' } source={ require('./assets/images/icons/itunesstore.png') } key={ 'Itunes Store' } />,
-        <AppIcon name= { 'Mail' } source={ require('./assets/images/icons/mail.png') } key={ 'Mail' } />,
-        <AppIcon name= { 'Map' } source={ require('./assets/images/icons/map.png') } key={ 'Map' } />,
-        <AppIcon name= { 'Messages' } source={ require('./assets/images/icons/messages.png') } key={ 'Messages' } />,
-        <AppIcon name= { 'Messenger' } source={ require('./assets/images/icons/messenger.png') } key={ 'Messenger' } />,
-        <AppIcon name= { 'Music' } source={ require('./assets/images/icons/music.png') } key={ 'Music' } />,
-        <AppIcon name= { 'Notes' } source={ require('./assets/images/icons/notes.png') } key={ 'Notes' } />,
-        <AppIcon name= { 'Phone' } source={ require('./assets/images/icons/phone.png') } key={ 'Phone' } />,
-        <AppIcon name= { 'Photos' } source={ require('./assets/images/icons/photos.png') } key={ 'Photos' } />,
-        <AppIcon name= { 'Safari' } source={ require('./assets/images/icons/safari.png') } key={ 'Safari' } />,
-        <AppIcon name= { 'Settings' } source={ require('./assets/images/icons/settings.png') } key={ 'Settings' } />,
-        <AppIcon name= { 'Snapchat' } source={ require('./assets/images/icons/snap.png') } key={ 'Snapchat' } />,
-        <AppIcon name= { 'Weather' } source={ require('./assets/images/icons/weather.png') } key={ 'Weather' } />,
-        <AppIcon name= { 'YouTube' } source={ require('./assets/images/icons/yt.png') } key={ 'YouTube' } />
+        <AppIcon parentFunction={this.appPressed.bind(this)} index= { 1 } name= { 'App Store' } source={ require('./assets/images/icons/appstore.png') } key={ 'App Store' } />,
+        <AppIcon parentFunction={this.appPressed.bind(this)} index= { 2 } name= { 'Calendar' } source={ require('./assets/images/icons/calendar.png') } key={ 'Calendar' } />,
+        <AppIcon parentFunction={this.appPressed.bind(this)} index= { 3 } name= { 'Facebook' } source={ require('./assets/images/icons/fb.png') } key={ 'Facebook' } />,
+        <AppIcon parentFunction={this.appPressed.bind(this)} index= { 4 } name= { 'Instagram' } source={ require('./assets/images/icons/instagram.png') } key={ 'Instagram' } />,
+        <AppIcon parentFunction={this.appPressed.bind(this)} index= { 5 } name= { 'Itunes Store' } source={ require('./assets/images/icons/itunesstore.png') } key={ 'Itunes Store' } />,
+        <AppIcon parentFunction={this.appPressed.bind(this)} index= { 6 } name= { 'Mail' } source={ require('./assets/images/icons/mail.png') } key={ 'Mail' } />,
+        <AppIcon parentFunction={this.appPressed.bind(this)} index= { 7 } name= { 'Map' } source={ require('./assets/images/icons/map.png') } key={ 'Map' } />,
+        <AppIcon parentFunction={this.appPressed.bind(this)} index= { 8 } name= { 'Messages' } source={ require('./assets/images/icons/messages.png') } key={ 'Messages' } />,
+        <AppIcon parentFunction={this.appPressed.bind(this)} index= { 9 } name= { 'Messenger' } source={ require('./assets/images/icons/messenger.png') } key={ 'Messenger' } />,
+        <AppIcon parentFunction={this.appPressed.bind(this)} index= { 10 } name= { 'Music' } source={ require('./assets/images/icons/music.png') } key={ 'Music' } />,
+        <AppIcon parentFunction={this.appPressed.bind(this)} index= { 11 } name= { 'Notes' } source={ require('./assets/images/icons/notes.png') } key={ 'Notes' } />,
+        <AppIcon parentFunction={this.appPressed.bind(this)} index= { 12 } name= { 'Phone' } source={ require('./assets/images/icons/phone.png') } key={ 'Phone' } />,
+        <AppIcon parentFunction={this.appPressed.bind(this)} index= { 13 } name= { 'Photos' } source={ require('./assets/images/icons/photos.png') } key={ 'Photos' } />,
+        <AppIcon parentFunction={this.appPressed.bind(this)} index= { 14 } name= { 'Safari' } source={ require('./assets/images/icons/safari.png') } key={ 'Safari' } />,
+        <AppIcon parentFunction={this.appPressed.bind(this)} index= { 15 } name= { 'Settings' } source={ require('./assets/images/icons/settings.png') } key={ 'Settings' } />,
+        <AppIcon parentFunction={this.appPressed.bind(this)} index= { 16 } name= { 'Snapchat' } source={ require('./assets/images/icons/snap.png') } key={ 'Snapchat' } />,
+        <AppIcon parentFunction={this.appPressed.bind(this)} index= { 17 } name= { 'Weather' } source={ require('./assets/images/icons/weather.png') } key={ 'Weather' } />,
+        <AppIcon parentFunction={this.appPressed.bind(this)} index= { 18 } name= { 'YouTube' } source={ require('./assets/images/icons/yt.png') } key={ 'YouTube' } />
       ] });
 
     page = this.getPage(0, this.state.appIcons);
     this.setState({ workingSet: this.state.appIcons, currentPageNumber: 0, currentPage: page });
   }
 
+  appPressed(index){
+    //Alert.alert("App " + index + " was pressed");
+    selected = this.state.selectedApps;
+    if(selected.includes(index)){
+      selected = selected.filter((item) => item !== index);
+    }
+    else selected.push(index);
+    this.setState({ selectedApps: selected });
+  }
+
+  donePressed(){
+    this.setState({ doneSelecting: true });
+    this.buildUseableApps();
+  }
+
+  buildUseableApps(){
+    selected = this.state.selectedApps;
+    apps = [];
+    if(selected.includes(1)) apps.push(<App name= { 'App Store' } source={ require('./assets/images/icons/appstore.png') } key={ 'App Store'} />);
+    if(selected.includes(2)) apps.push(<App name= { 'Calendar' } source={ require('./assets/images/icons/calendar.png') } key={ 'Calendar'} />);
+    if(selected.includes(3)) apps.push(<App name= { 'Facebook' } source={ require('./assets/images/icons/fb.png') } key={ 'Facebook'} />);
+    if(selected.includes(4)) apps.push(<App name= { 'Instagram' } source={ require('./assets/images/icons/instagram.png') } key={ 'Instagram'} />);
+    if(selected.includes(5)) apps.push(<App name= { 'Itunes Store' } source={ require('./assets/images/icons/itunesstore.png') } key={ 'Itunes Store'} />);
+    if(selected.includes(6)) apps.push(<App name= { 'Mail' } source={ require('./assets/images/icons/mail.png') } key={ 'Mail'} />);
+    if(selected.includes(7)) apps.push(<App name= { 'Map' } source={ require('./assets/images/icons/map.png') } key={ 'Map'} />);
+    if(selected.includes(8)) apps.push(<App name= { 'Messages' } source={ require('./assets/images/icons/messages.png') } key={ 'Messages'} />);
+    if(selected.includes(9)) apps.push(<App name= { 'Messenger' } source={ require('./assets/images/icons/messenger.png') } key={ 'Messenger'} />);
+    if(selected.includes(10)) apps.push(<App name= { 'Music' } source={ require('./assets/images/icons/music.png') } key={ 'Music'} />);
+    if(selected.includes(11)) apps.push(<App name= { 'Notes' } source={ require('./assets/images/icons/notes.png') } key={ 'Notes'} />);
+    if(selected.includes(12)) apps.push(<App name= { 'Phone' } source={ require('./assets/images/icons/phone.png') } key={ 'Phone'} />);
+    if(selected.includes(13)) apps.push(<App name= { 'Photos' } source={ require('./assets/images/icons/photos.png') } key={ 'Photos'} />);
+    if(selected.includes(14)) apps.push(<App name= { 'Safari' } source={ require('./assets/images/icons/safari.png') } key={ 'Safari'} />);
+    if(selected.includes(15)) apps.push(<App name= { 'Settings' } source={ require('./assets/images/icons/settings.png') } key={ 'Settings'} />);
+    if(selected.includes(16)) apps.push(<App name= { 'Snapchat' } source={ require('./assets/images/icons/snap.png') } key={ 'Snapchat'} />);
+    if(selected.includes(17)) apps.push(<App name= { 'Weather' } source={ require('./assets/images/icons/weather.png') } key={ 'Weather'} />);
+    if(selected.includes(18)) apps.push(<App name= { 'YouTube' } source={ require('./assets/images/icons/yt.png') } key={ 'YouTube'} />);
+
+    this.setState({ useableApps: apps });
+  }
+
   contains(key, searchString, keyIndex, stringIndex){
-    return key.toLowerCase().indexOf(searchString.toLowerCase()) > -1;
+    doesIt = key.toLowerCase().indexOf(searchString.toLowerCase()) >= 0;
+    return doesIt;
     // if(keyIndex < key.length){
     //   if(key[keyIndex] == searchString[stringIndex]){
     //     if(stringIndex == searchString.length - 1) return true;
@@ -171,9 +253,10 @@ export default class App extends React.Component {
   filterApps(searchString, icons){
     //Alert.alert(searchString);
     //this.state.workingSet.map((item) => Alert.alert(item.key));
-    this.setState({ searchString: searchString, workingSet: icons.filter((item) => this.contains(item.key, searchString)) });
-    page = this.getPage(this.state.currentPageNumber, this.state.workingSet);
-    this.setState({ currentPage: page });
+    newSet = icons.filter((item) => this.contains(item.key, searchString));
+    newSet.sort((a, b) => this.contains(a.key, searchString) > this.contains(b.key, searchString));
+    page = this.getPage(this.state.currentPageNumber, newSet);
+    this.setState({ searchString: searchString, workingSet: newSet, currentPage: page });
   }
 
   getPage(pageNumber, icons){
@@ -191,7 +274,45 @@ export default class App extends React.Component {
     return page;
   }
 
+  rebuildPage(){
+    pageNumber = this.state.currentPageNumber;
+    working = this.state.workingSet;
+
+    page = this.getPage(pageNumber, working);
+    this.setState({ currentPage: page });
+  }
+
+  decPage(){
+    page = this.state.currentPageNumber;
+    page--;
+
+    if(page < 0) page = 0;
+    this.setState({ currentPageNumber: page });
+    this.rebuildPage();
+  }
+
+  incPage(){
+    page = this.state.currentPageNumber;
+    page++;
+
+    if(page > 1) page = 1;
+    this.setState({ currentPageNumber: page });
+    this.rebuildPage();
+  }
+
   render() {
+
+    if(this.state.doneSelecting){
+      return(
+        <View tint="light" intensity={ 50 } style={{  }}>
+
+          <ImageBackground style={{ height: Dimensions.get('window').height, width: Dimensions.get('window').width, flexDirection: 'row', flexWrap: 'wrap' }} source={require('./assets/images/wallpaper.jpg')} >
+            { this.state.useableApps }
+          </ImageBackground>
+
+        </View>
+      );
+    }
 
     if(!this.state.fontLoaded){
       return (<AppLoading />);
@@ -222,13 +343,20 @@ export default class App extends React.Component {
                       textInputProps={{underlineColorAndroid:'rgba(0,0,0,0)'}}
                       onChangeText={ (text) => { this.setState({text}); this.filterApps(text, this.state.appIcons); } }  
                     />
-                    <DoneButton/>
+                    <DoneButton parentFunction={this.donePressed.bind(this)} />
                   </View>
 
                 </ImageBackground>
               </View>
 
-              <View style={{ alignItems: 'center' }}>
+              <View style={{ alignItems: 'center', flexDirection: 'row' }}>
+
+                <Button 
+                  onPress={ this.decPage.bind(this) }
+                  title=' <- ' 
+                  style={{ height: Dimensions.get('window').height / 2.5, width: Dimensions.get('window').width / 10  }}
+                />
+
                 <View style={{ marginTop: Dimensions.get('window').height / 8, height: Dimensions.get('window').height / 2.5, width: Dimensions.get('window').width * 0.8 }}>
                   
                   <ImageBackground style={{ height: Dimensions.get('window').height / 2, width: Dimensions.get('window').width * 0.8, flexDirection: 'row', flexWrap: 'wrap' }} source={require('./assets/images/folder.png')} >
@@ -238,6 +366,13 @@ export default class App extends React.Component {
                   </ImageBackground>
 
                 </View>
+
+                <Button 
+                  onPress={ this.incPage.bind(this) }
+                  title=' -> '
+                  style={{ height: Dimensions.get('window').height / 2.5, width: Dimensions.get('window').width / 10  }}
+                />
+
               </View>
 
             </ImageBackground>
