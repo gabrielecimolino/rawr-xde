@@ -127,7 +127,7 @@ class AppIcon extends React.Component{
   render(){
     if(this.state.selected){
       return(
-        <View style={{ height: Dimensions.get('window').height / 6 }}>
+        <View style={{ height: Dimensions.get('window').height * 0.8 / 6 }}>
           <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: Dimensions.get('window').height / 6, width: Dimensions.get('window').width * 0.8 / 3 }}>
             <View style={{ }}>
               <ImageBackground style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', height: Dimensions.get('window').height * 0.7 / 6, width: Dimensions.get('window').width * 0.7 * 0.8 / 3 }} source={this.props.source} >
@@ -159,7 +159,7 @@ class AppIcon extends React.Component{
     }
     else{
       return(
-        <View style ={{ height: Dimensions.get('window').height / 6 }}>
+        <View style ={{ height: Dimensions.get('window').height * 0.8 / 6 }}>
           <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: Dimensions.get('window').height / 6, width: Dimensions.get('window').width * 0.8 / 3 }} >
             
             <View style={{  }}>
@@ -276,8 +276,8 @@ export default class Prototype extends React.Component {
     //this.state.workingSet.map((item) => Alert.alert(item.key));
     newSet = icons.filter((item) => this.contains(item.key, searchString));
     newSet.sort((a, b) => this.contains(a.key, searchString) > this.contains(b.key, searchString));
-    page = this.getPage(this.state.currentPageNumber, newSet);
-    this.setState({ searchString: searchString, workingSet: newSet, currentPage: page });
+    page = this.getPage(0, newSet);
+    this.setState({ searchString: searchString, workingSet: newSet, currentPage: page, currentPageNumber: 0 });
   }
 
   getPage(pageNumber, icons){
@@ -315,6 +315,7 @@ export default class Prototype extends React.Component {
     page++;
 
     maxPages = Math.floor(this.state.workingSet.length / 9) - 1;
+    if(maxPages < 0) maxPages = 0;
 
     if(page > maxPages) page = maxPages;
     this.rebuildPage(page);
@@ -353,7 +354,7 @@ export default class Prototype extends React.Component {
       // }
 
       return (
-        <View tint="light" intensity={ 50 } style={{ flex: 1 }}>
+        <View tint="light" intensity={ 50 } style={{ }}>
 
             <ImageBackground style={{ height: Dimensions.get('window').height, width: Dimensions.get('window').width }} source={require('./assets/images/wallpaper.jpg')} >
               
@@ -373,6 +374,10 @@ export default class Prototype extends React.Component {
                 </ImageBackground>
               </View>
 
+              <View style={{ marginTop: Dimensions.get('window').height / 20, alignItems: 'center' }}>
+                <Text style= {{ color: '#fff', fontFamily: 'sf-pro', fontSize: Dimensions.get('window').width / 10}}>Select Apps</Text>
+              </View>
+
               <View style={{ alignItems: 'center', flexDirection: 'row' }}>
 
                 <View style={{ flex: 1, flexDirection: 'column' }}>
@@ -383,11 +388,13 @@ export default class Prototype extends React.Component {
                   />
                 </View>
 
-                <View style={{ marginTop: Dimensions.get('window').height / 8, height: Dimensions.get('window').height / 2.5, width: Dimensions.get('window').width * 0.8 }}>
+                <View style={{ height: Dimensions.get('window').height / 2.5, width: Dimensions.get('window').width * 0.8 }}>
                   
-                  <ImageBackground style={{ height: Dimensions.get('window').height / 2, width: Dimensions.get('window').width * 0.8, flexDirection: 'row', flexWrap: 'wrap' }} source={require('./assets/images/folder.png')} >
+                  <ImageBackground style={{ height: Dimensions.get('window').height / 2, width: Dimensions.get('window').width * 0.8 }} source={require('./assets/images/folder.png')} >
                     
+                    <View style={{ marginTop: Dimensions.get('window').height / 20 , height: Dimensions.get('window').height * 0.8 / 2, width: Dimensions.get('window').width * 0.8, flexDirection: 'row', flexWrap: 'wrap'  }}>
                       { this.state.currentPage }
+                    </View>
                 
                   </ImageBackground>
 
