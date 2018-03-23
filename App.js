@@ -51,7 +51,28 @@ class App extends React.Component{
   }
 
   press(){
-    Alert.alert(this.props.name + " has been pressed");
+    message = "";
+    if(this.props.name == 'App Store') message = 'Preemptive';
+    if(this.props.name == 'Calendar') message = 'Strike';
+    if(this.props.name == 'Facebook') message = 'Vivacious';
+    if(this.props.name == 'Instagram') message = 'Kyle';
+    if(this.props.name == 'Itunes Store') message = 'Bottle';
+    if(this.props.name == 'Mail') message = 'Volleyball';
+    if(this.props.name == 'Map') message = 'Speech';
+    if(this.props.name == 'Messages') message = 'Knee';
+    if(this.props.name == 'Messenger') message = 'Tide';
+    if(this.props.name == 'Music') message = 'Shoes';
+    if(this.props.name == 'Notes') message = 'Pony';
+    if(this.props.name == 'Phone') message = 'Eggroll';
+    if(this.props.name == 'Photos') message = 'Carousel';
+    if(this.props.name == 'Safari') message = 'Boat';
+    if(this.props.name == 'Settings') message = 'Rapping';
+    if(this.props.name == 'Snapchat') message = 'Prom';
+    if(this.props.name == 'Weather') message = 'Submarine';
+    if(this.props.name == 'YouTube') message = 'Magenta';
+
+    Alert.alert(message);
+    //Alert.alert(this.props.name + " has been pressed");
   }
 
   render(){
@@ -274,12 +295,11 @@ export default class Prototype extends React.Component {
     return page;
   }
 
-  rebuildPage(){
-    pageNumber = this.state.currentPageNumber;
+  rebuildPage(pageNumber){
     working = this.state.workingSet;
 
     page = this.getPage(pageNumber, working);
-    this.setState({ currentPage: page });
+    this.setState({ currentPage: page, currentPageNumber: pageNumber });
   }
 
   decPage(){
@@ -287,17 +307,17 @@ export default class Prototype extends React.Component {
     page--;
 
     if(page < 0) page = 0;
-    this.setState({ currentPageNumber: page });
-    this.rebuildPage();
+    this.rebuildPage(page);
   }
 
   incPage(){
     page = this.state.currentPageNumber;
     page++;
 
-    if(page > 1) page = 1;
-    this.setState({ currentPageNumber: page });
-    this.rebuildPage();
+    maxPages = Math.floor(this.state.workingSet.length / 9) - 1;
+
+    if(page > maxPages) page = maxPages;
+    this.rebuildPage(page);
   }
 
   render() {
@@ -306,8 +326,12 @@ export default class Prototype extends React.Component {
       return(
         <View tint="light" intensity={ 50 } style={{  }}>
 
-          <ImageBackground style={{ height: Dimensions.get('window').height, width: Dimensions.get('window').width, flexDirection: 'row', flexWrap: 'wrap' }} source={require('./assets/images/wallpaper.jpg')} >
-            { this.state.useableApps }
+          <ImageBackground style={{ height: Dimensions.get('window').height, width: Dimensions.get('window').width }} source={require('./assets/images/wallpaper.jpg')} >
+          
+            <View style= {{ marginTop: Dimensions.get('window').height / 25, flexDirection: 'row', flexWrap: 'wrap' }}>  
+              { this.state.useableApps }
+            </View>
+          
           </ImageBackground>
 
         </View>
@@ -351,11 +375,13 @@ export default class Prototype extends React.Component {
 
               <View style={{ alignItems: 'center', flexDirection: 'row' }}>
 
-                <Button 
-                  onPress={ this.decPage.bind(this) }
-                  title=' <- ' 
-                  style={{ height: Dimensions.get('window').height / 2.5, width: Dimensions.get('window').width / 10  }}
-                />
+                <View style={{ flex: 1, flexDirection: 'column' }}>
+                  <Button 
+                    onPress={ this.decPage.bind(this) }
+                    title=' <- ' 
+                    style={{ height: Dimensions.get('window').height / 2.5, width: Dimensions.get('window').width / 10  }}
+                  />
+                </View>
 
                 <View style={{ marginTop: Dimensions.get('window').height / 8, height: Dimensions.get('window').height / 2.5, width: Dimensions.get('window').width * 0.8 }}>
                   
