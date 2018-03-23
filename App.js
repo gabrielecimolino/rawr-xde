@@ -356,7 +356,7 @@ export default class Prototype extends React.Component {
       return (
         <View tint="light" intensity={ 50 } style={{ }}>
 
-            <ImageBackground style={{ height: Dimensions.get('window').height, width: Dimensions.get('window').width }} source={require('./assets/images/wallpaper.jpg')} >
+            <ImageBackground style={{ height: Dimensions.get('window').height, width: Dimensions.get('window').width }} source={require('./assets/images/wallpaperBlurry.png')} >
               
               <View style={{ marginTop: Dimensions.get('window').height / 25, height: Dimensions.get('window').height / 15 }}>
                 <ImageBackground style={{ height: Dimensions.get('window').height / 15, width: Dimensions.get('window').width}} source={require('./assets/images/searchbar.png')} >
@@ -374,7 +374,7 @@ export default class Prototype extends React.Component {
                 </ImageBackground>
               </View>
 
-              <View style={{ marginTop: Dimensions.get('window').height / 20, alignItems: 'center' }}>
+              <View style={{ alignItems: 'center' }}>
                 <Text style= {{ color: '#fff', fontFamily: 'sf-pro', fontSize: Dimensions.get('window').width / 10}}>Select Apps</Text>
               </View>
 
